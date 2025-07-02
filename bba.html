@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University GPA Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                        </svg>
+                        <span class="text-2xl font-bold logo-text ml-2">GPA Calc</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-blue-600 font-medium hover:text-blue-800 transition">Home</a>
+                    <a href="bca.html" class="text-gray-600 hover:text-blue-600 transition">BCA</a>
+                    <a href="bba.html" class="text-gray-600 hover:text-blue-600 transition">BBA</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-gray-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-2 border-t">
+            <a href="index.html" class="block py-2 px-2 text-blue-600 rounded font-medium">Home</a>
+            <a href="bca.html" class="block py-2 px-2 text-gray-600 hover:bg-gray-100 rounded transition">BCA</a>
+            <a href="bba.html" class="block py-2 px-2 text-gray-600 hover:bg-gray-100 rounded transition">BBA</a>
+            <a href="#about" class="block py-2 px-2 text-gray-600 hover:bg-gray-100 rounded transition">About</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">BBA GPA Calculator</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Grade Reference -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-blue-700 mb-4">Grade Reference</h2>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="p-2 text-left border">Letter Grade</th>
+                            <th class="p-2 text-left border">Honor Point</th>
+                            <th class="p-2 text-left border">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-2 border">A</td>
+                            <td class="p-2 border">4.0</td>
+                            <td class="p-2 border">Excellent</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">A-</td>
+                            <td class="p-2 border">3.7</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">B+</td>
+                            <td class="p-2 border">3.3</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">B</td>
+                            <td class="p-2 border">3.0</td>
+                            <td class="p-2 border">Good</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">B-</td>
+                            <td class="p-2 border">2.7</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">C+</td>
+                            <td class="p-2 border">2.3</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">C</td>
+                            <td class="p-2 border">2.0</td>
+                            <td class="p-2 border">Fair</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">C-</td>
+                            <td class="p-2 border">1.7</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">D+</td>
+                            <td class="p-2 border">1.3</td>
+                            <td class="p-2 border"></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">D</td>
+                            <td class="p-2 border">1.0</td>
+                            <td class="p-2 border">Minimum Requirement</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-2 border">F</td>
+                            <td class="p-2 border">0.0</td>
+                            <td class="p-2 border">Fail</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Semester Selector -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-blue-700 mb-4">Select Semester</h2>
+                <select id="semester-select" class="w-full p-3 border border-gray-300 rounded-md mb-4">
+                    <option value="1">Year I, Semester I</option>
+                    <option value="2">Year I, Semester II</option>
+                    <option value="3">Year II, Semester III</option>
+                    <option value="4">Year II, Semester IV</option>
+                    <option value="5">Year III, Semester V</option>
+                    <option value="6">Year III, Semester VI</option>
+                    <option value="7">Year IV, Semester VII</option>
+                    <option value="8">Year IV, Semester VIII</option>
+                </select>
+                
+                <button id="load-courses" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                    Load Courses
+                </button>
+                
+                <div class="mt-6">
+                    <button id="view-all-results" class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition">
+                        View All Semester Results
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Course Inputs -->
+        <div id="course-inputs" class="bg-white p-6 rounded-lg shadow-md mt-8 hidden">
+            <h2 class="text-xl font-semibold text-blue-700 mb-4">Enter Your Grades</h2>
+            <div id="courses-container"></div>
+            
+            <div class="flex flex-col sm:flex-row justify-between gap-4 mt-6">
+                <button id="save-semester" class="bg-yellow-600 text-white py-2 px-6 rounded-md hover:bg-yellow-700 transition">
+                    Save Semester Data
+                </button>
+                <button id="calculate-sgpa" class="bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700 transition">
+                    Calculate SGPA
+                </button>
+                <button id="calculate-cgpa" class="bg-purple-600 text-white py-2 px-6 rounded-md hover:bg-purple-700 transition">
+                    Calculate CGPA
+                </button>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div id="results" class="bg-white p-6 rounded-lg shadow-md mt-8 hidden">
+            <h2 class="text-xl font-semibold text-blue-700 mb-4">Results</h2>
+            <div id="result-content" class="space-y-4"></div>
+        </div>
+        
+        <!-- All Semester Results Modal -->
+        <div id="all-results-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-blue-700">All Semester Results</h2>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="all-results-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="bg-gray-200 py-12 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-md p-8 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-blue-800 mb-6 text-center">About the Developer</h2>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-600">
+                            <img src="assets/IMG_9383.jpeg" alt="Bijit Kandel" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h3 class="text-xl font-semibold mb-2">Bijit Kandel</h3>
+                        <p class="text-gray-700 mb-4">BCA Student</p>
+                        <p class="text-gray-600 mb-4">
+                            I'm a passionate B.C.A student with expertise in web development and data structures. 
+                            This GPA calculator was created to help fellow students track their academic progress.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-github text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-linkedin text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Logo and description -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                        </svg>
+                        <span class="text-xl font-bold logo-text ml-2">GPA Calc</span>
+                    </div>
+                    <p class="text-gray-400">
+                        A simple yet powerful tool for university students to track their academic performance.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="bca.html" class="text-gray-400 hover:text-white transition">BCA Calculator</a></li>
+                        <li><a href="bba.html" class="text-gray-400 hover:text-white transition">BBA Calculator</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Programs -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-2">
+                        <li><a href="bca.html" class="text-gray-400 hover:text-white transition">BCA</a></li>
+                        <li><a href="bba.html" class="text-gray-400 hover:text-white transition">BBA</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2"></i> Bijitkandel10@gmail.com
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-2"></i> +977-9855016233
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i> GPACALC
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; BlackOwl pvt ltd.. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/kandelbijit10" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bijit-kandel-72502530b/?originalSubdomain=np" class="">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://bijitkandel.vercel.app/" class="text-gray-600 hover:text-blue-600 transition">
+                        <svg class="h-8 w-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#3b82f6" opacity="0.2"/>
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z" fill="#3b82f6"/>
+                            <path d="M2 12h20" stroke="#3b82f6" stroke-width="1"/>
+                            <path d="M12 2a15 15 0 010 20 15 15 0 010-20" fill="none" stroke="#3b82f6" stroke-width="1"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Course data for each semester (BBA program)
+        const semesterCourses = {
+            1: [
+                { code: "ENG 110", name: "English", credits: 3 },
+                { code: "MTH 110", name: "Basic Mathematics", credits: 3 },
+                { code: "ICT 110", name: "IT for Business", credits: 3 },
+                { code: "BHS 110", name: "Behavioral Science", credits: 3 },
+                { code: "MGT 111", name: "Principles of Management", credits: 3 },
+                { code: "PRC 110", name: "Software Skills Practicum", credits: 1 }
+            ],
+            2: [
+                { code: "BUC 201", name: "Business Communication", credits: 3 },
+                { code: "MTH 111", name: "Business Mathematics", credits: 3 },
+                { code: "ECO 110", name: "Introduction to Microeconomics", credits: 3 },
+                { code: "MGT 112", name: "Fundamentals of Organizational Behavior", credits: 3 },
+                { code: "ACC 110", name: "Financial Accounting", credits: 3 },
+                { code: "PRC 111", name: "Soft Skills Practicum", credits: 1 }
+            ],
+            3: [
+                { code: "STT 110", name: "Business Statistics", credits: 3 },
+                { code: "ECO 111", name: "Introduction to Macroeconomics", credits: 3 },
+                { code: "ACC 111", name: "Cost and Management Accounting", credits: 3 },
+                { code: "FIN 110", name: "Essentials of Finance", credits: 3 }
+            ],
+            4: [
+                { code: "STT 111", name: "Data Analysis and Modeling", credits: 3 },
+                { code: "MGT 113", name: "Business and Society", credits: 3 },
+                { code: "RCH 110", name: "Business Research Methods", credits: 3 },
+                { code: "MGT 114", name: "Human Resource Management", credits: 3 }
+            ],
+            5: [
+                { code: "MGT 115", name: "Entrepreneurship and Innovation", credits: 3 },
+                { code: "MGT 116", name: "Fundamentals of Operations Management", credits: 3 },
+                { code: "MIS 110", name: "Management Information System", credits: 3 },
+                { code: "MGT 117", name: "Project Management", credits: 3 },
+                { code: "CONCENTRATION1", name: "Concentration I", credits: 3 },
+                { code: "PRC 114", name: "Academic Writing", credits: 1 }
+            ],
+            6: [
+                { code: "MIS 111", name: "Essentials of e-Business", credits: 3 },
+                { code: "MGT 118", name: "International Business", credits: 3 },
+                { code: "PRJ 110", name: "Project Work", credits: 3 },
+                { code: "CONCENTRATION2", name: "Concentration II", credits: 3 },
+                { code: "ELECTIVE1", name: "Elective I", credits: 3 },
+                { code: "PRJ 111", name: "Business Development Project", credits: 2 }
+            ],
+            7: [
+                { code: "MGT 119", name: "Strategic Management", credits: 3 },
+                { code: "LAW 110", name: "Business Law", credits: 3 },
+                { code: "CONCENTRATION3", name: "Concentration III", credits: 3 },
+                { code: "ELECTIVE2", name: "Elective II", credits: 3 },
+                { code: "MGT 120", name: "Business Environment", credits: 3 },
+                { code: "PRJ 112", name: "Community Engagement Project", credits: 2 }
+            ],
+            8: [
+                { code: "INT 110", name: "Internship", credits: 6 }
+            ]
+        };
+
+        // Grade to points mapping
+        const gradePoints = {
+            'A': 4.0,
+            'A-': 3.7,
+            'B+': 3.3,
+            'B': 3.0,
+            'B-': 2.7,
+            'C+': 2.3,
+            'C': 2.0,
+            'C-': 1.7,
+            'D+': 1.3,
+            'D': 1.0,
+            'F': 0.0
+        };
+
+        // Initialize semester data in localStorage if not exists
+        if (!localStorage.getItem('bbasemesterData')) {
+            const initialData = {};
+            for (let i = 1; i <= 8; i++) {
+                initialData[i] = {
+                    completed: false,
+                    courses: semesterCourses[i].map(course => ({
+                        ...course,
+                        grade: ''
+                    })),
+                    sgpa: 0,
+                    totalCredits: 0,
+                    totalPoints: 0
+                };
+            }
+            localStorage.setItem('bbasemesterData', JSON.stringify(initialData));
+        }
+
+        // Get semester data from localStorage
+        function getSemesterData() {
+            return JSON.parse(localStorage.getItem('bbasemesterData'));
+        }
+
+        // Update semester data in localStorage
+        function updateSemesterData(semester, data) {
+            const allData = getSemesterData();
+            allData[semester] = data;
+            localStorage.setItem('bbasemesterData', JSON.stringify(allData));
+        }
+
+        // Load courses when semester is selected
+        document.getElementById('load-courses').addEventListener('click', function() {
+            const semester = document.getElementById('semester-select').value;
+            const semesterData = getSemesterData()[semester];
+            const coursesContainer = document.getElementById('courses-container');
+            coursesContainer.innerHTML = '';
+            
+            semesterData.courses.forEach(course => {
+                const courseDiv = document.createElement('div');
+                courseDiv.className = 'mb-4 p-4 border border-gray-200 rounded-md';
+                courseDiv.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-medium">${course.code} - ${course.name}</h3>
+                            <p class="text-sm text-gray-600">Credits: ${course.credits}</p>
+                        </div>
+                        <select class="grade-select p-2 border border-gray-300 rounded-md" 
+                                data-credits="${course.credits}" 
+                                data-code="${course.code}">
+                            <option value="">Select Grade</option>
+                            ${Object.keys(gradePoints).map(grade => 
+                                `<option value="${grade}" ${course.grade === grade ? 'selected' : ''}>${grade}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
+                `;
+                coursesContainer.appendChild(courseDiv);
+            });
+            
+            document.getElementById('course-inputs').classList.remove('hidden');
+            document.getElementById('results').classList.add('hidden');
+        });
+
+        // Save semester data
+        document.getElementById('save-semester').addEventListener('click', function() {
+            const semester = document.getElementById('semester-select').value;
+            const gradeSelects = document.querySelectorAll('.grade-select');
+            const semesterData = getSemesterData()[semester];
+            let allGradesSelected = true;
+            
+            gradeSelects.forEach(select => {
+                const grade = select.value;
+                const code = select.dataset.code;
+                
+                if (!grade) {
+                    allGradesSelected = false;
+                }
+                
+                // Update grade in semester data
+                const courseIndex = semesterData.courses.findIndex(c => c.code === code);
+                if (courseIndex !== -1) {
+                    semesterData.courses[courseIndex].grade = grade;
+                }
+            });
+            
+            if (!allGradesSelected) {
+                alert('Please select grades for all courses before saving.');
+                return;
+            }
+            
+            // Calculate SGPA for this semester
+            let totalCredits = 0;
+            let totalPoints = 0;
+            
+            semesterData.courses.forEach(course => {
+                if (course.grade) {
+                    totalPoints += gradePoints[course.grade] * course.credits;
+                    totalCredits += course.credits;
+                }
+            });
+            
+            semesterData.sgpa = totalPoints / totalCredits;
+            semesterData.totalCredits = totalCredits;
+            semesterData.totalPoints = totalPoints;
+            semesterData.completed = true;
+            
+            updateSemesterData(semester, semesterData);
+            
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4">
+                    <p class="font-bold">Semester ${semester} data saved successfully!</p>
+                    <p>SGPA: ${semesterData.sgpa.toFixed(2)}</p>
+                </div>
+            `;
+            
+            document.getElementById('results').classList.remove('hidden');
+        });
+
+        // Calculate SGPA
+        document.getElementById('calculate-sgpa').addEventListener('click', function() {
+            const semester = document.getElementById('semester-select').value;
+            const gradeSelects = document.querySelectorAll('.grade-select');
+            let totalCredits = 0;
+            let totalPoints = 0;
+            let allGradesSelected = true;
+            
+            gradeSelects.forEach(select => {
+                const grade = select.value;
+                const credits = parseFloat(select.dataset.credits);
+                
+                if (grade) {
+                    totalPoints += gradePoints[grade] * credits;
+                    totalCredits += credits;
+                } else {
+                    allGradesSelected = false;
+                }
+            });
+            
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = '';
+            
+            if (!allGradesSelected) {
+                resultContent.innerHTML = `
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                        <p>Please select grades for all courses before calculating.</p>
+                    </div>
+                `;
+            } else {
+                const sgpa = totalPoints / totalCredits;
+                resultContent.innerHTML = `
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4">
+                        <p class="font-bold">Semester ${semester} GPA (SGPA): ${sgpa.toFixed(2)}</p>
+                        <p>Total Credits: ${totalCredits}</p>
+                        <p>Total Grade Points: ${totalPoints.toFixed(2)}</p>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('results').classList.remove('hidden');
+        });
+
+        // Calculate CGPA
+        document.getElementById('calculate-cgpa').addEventListener('click', function() {
+            const allData = getSemesterData();
+            let totalCreditsAll = 0;
+            let totalPointsAll = 0;
+            let completedSemesters = 0;
+            
+            // Calculate totals for all completed semesters
+            for (const semester in allData) {
+                if (allData[semester].completed) {
+                    totalCreditsAll += allData[semester].totalCredits;
+                    totalPointsAll += allData[semester].totalPoints;
+                    completedSemesters++;
+                }
+            }
+            
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = '';
+            
+            if (completedSemesters === 0) {
+                resultContent.innerHTML = `
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                        <p>No completed semesters found. Please save data for at least one semester.</p>
+                    </div>
+                `;
+            } else {
+                const cgpa = totalPointsAll / totalCreditsAll;
+                resultContent.innerHTML = `
+                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4">
+                        <p class="font-bold">Cumulative GPA (CGPA): ${cgpa.toFixed(2)}</p>
+                        <p>Total Credits Across All Semesters: ${totalCreditsAll}</p>
+                        <p>Total Grade Points Across All Semesters: ${totalPointsAll.toFixed(2)}</p>
+                        <p>Number of Completed Semesters: ${completedSemesters}</p>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('results').classList.remove('hidden');
+        });
+
+        // View all semester results
+        document.getElementById('view-all-results').addEventListener('click', function() {
+            const allData = getSemesterData();
+            const modalContent = document.getElementById('all-results-content');
+            modalContent.innerHTML = '';
+            
+            let html = '<div class="space-y-6">';
+            
+            for (const semester in allData) {
+                const semData = allData[semester];
+                html += `
+                    <div class="border-b pb-4">
+                        <h3 class="text-lg font-semibold mb-2">Semester ${semester}</h3>
+                        ${semData.completed ? `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-medium">SGPA: <span class="font-bold">${semData.sgpa.toFixed(2)}</span></p>
+                                    <p>Total Credits: ${semData.totalCredits}</p>
+                                    <p>Total Points: ${semData.totalPoints.toFixed(2)}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Courses:</h4>
+                                    <ul class="list-disc list-inside text-sm">
+                                        ${semData.courses.map(course => 
+                                            `<li>${course.code}: ${course.grade || 'Not graded'}</li>`
+                                        ).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        ` : `
+                            <p class="text-gray-500">No data saved for this semester</p>
+                        `}
+                    </div>
+                `;
+            }
+            
+            // Calculate overall CGPA
+            let totalCreditsAll = 0;
+            let totalPointsAll = 0;
+            let completedSemesters = 0;
+            
+            for (const semester in allData) {
+                if (allData[semester].completed) {
+                    totalCreditsAll += allData[semester].totalCredits;
+                    totalPointsAll += allData[semester].totalPoints;
+                    completedSemesters++;
+                }
+            }
+            
+            if (completedSemesters > 0) {
+                const cgpa = totalPointsAll / totalCreditsAll;
+                html += `
+                    <div class="bg-blue-50 p-4 rounded-md">
+                        <h3 class="text-lg font-semibold mb-2">Overall CGPA</h3>
+                        <p class="font-bold text-blue-700">${cgpa.toFixed(2)}</p>
+                        <p>Based on ${completedSemesters} completed semester(s)</p>
+                        <p>Total Credits: ${totalCreditsAll}</p>
+                        <p>Total Points: ${totalPointsAll.toFixed(2)}</p>
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            modalContent.innerHTML = html;
+            document.getElementById('all-results-modal').classList.remove('hidden');
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('all-results-modal').classList.add('hidden');
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+
